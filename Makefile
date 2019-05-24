@@ -1,12 +1,13 @@
 
 #CPPFLAGS+=
-CXXFLAGS+=-std=c++11 -Wall
+CXXFLAGS+=-Wall
 
 all: test
 
 clean:
 	$(RM) test.o fnmatch2regex.o test
 
+test.o: CXXFLAGS+=-std=c++11
 test.o: fnmatch2regex.h
 
 %.o: %.cpp

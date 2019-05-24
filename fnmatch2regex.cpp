@@ -1,5 +1,4 @@
 #include "fnmatch2regex.h"
-#include <regex>
 #include <stdio.h>
 
 #define PARSE_RANGE
@@ -103,7 +102,7 @@ std::string fnmatch2regex(const char *pattern, fnflags_t flags)
             }
             ch=*++p;
 if (ch<from) { // reverse range
-  out.pop_back(); // HACK!!!
+  out.erase(out.end()-1); // c++11: out.pop_back(); // HACK!!!
   from=-1;
   break;
 }

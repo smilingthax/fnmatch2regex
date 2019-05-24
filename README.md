@@ -7,6 +7,7 @@
 Known issues:
 
 * Reverse ranges must be filtered out (at least for `libstdc++`), but this uses a non-utf8-safe hack for now...
+* Older `libstdc++` (e.g. version 5) does not recognize that the dash in `[a\-b]` is escaped...
 
 Copyright (c) 2019 Tobias Hoffmann
 
