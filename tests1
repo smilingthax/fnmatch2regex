@@ -1,0 +1,75 @@
+# simple
+a	a	1
+a	b	0
+
+# with ?
+?	a	1
+?	.	0
+a?	a.	1
+a/?	a/b	1
+a/?	a/.	0
+?	/	0
+
+# with *
+*	a	1
+*	.	0
+*	/	0
+a*	a.	1
+a*	aa/	0
+a/*	a/b	1
+a/*	a/.	0
+
+# with [range]
+[ab]	a	1
+[ab]	c	0
+[^ab]	a	0
+[!ab]	a	0
+[^ab]	c	1
+[!ab]	c	1
+[a-c]	b	1
+[a-c]	d	0
+[b-a]	b	0
+[c-b]	b	0
+[a-]	-	1
+[-b]	-	1
+[]]	]	1
+[^]]	a	1
+[!]]	a	1
+
+# unclosed ranges, etc.
+[ab	a	0
+[a-	a	0
+[ab	c	0
+[a-	c	0
+[^]	a	0
+[a-c-e]	b	1
+[a-c-e]	d	0
+
+# ranges with period/path
+[.]	.	0
+a[.]	a.	1
+a/[.]	a/.	0
+[/]	/	0
+[^/]	a	1
+[.-0]	/	0
+[.-1]	/	0
+[^a]	/	0
+
+# combined * and ?
+a*b	ab	1
+a*b	axb	1
+a*b	axxb	1
+a**b	ab	1
+a**b	axb	1
+a**b	axxb	1
+a*?*b	ab	0
+a*?*b	axb	1
+a*?*b	axxb	1
+
+# *[range]
+a*[cd]	ac	1
+a*[cd]	axc	1
+a*[cd]	axx	0
+
+a/[.]	a/.	0
+a*[.]	a/.	0
